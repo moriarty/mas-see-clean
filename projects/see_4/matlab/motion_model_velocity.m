@@ -21,7 +21,7 @@ function [ prob ] = motion_model_velocity(final_pose, velocity_vector, start_pos
             a_3 = default_alpha;
             a_4 = default_alpha;
             a_5 = default_alpha;
-            a_6 = defualt_alpha;
+            a_6 = default_alpha;
         case 5
             a_3 = default_alpha;
             a_4 = default_alpha;
@@ -58,7 +58,7 @@ function [ prob ] = motion_model_velocity(final_pose, velocity_vector, start_pos
     mu = 0.5*num/den;
     
     x_a = (x+x_)*0.5 + mu*(y-y_);
-    y_a = (y+y_)*0.5 + mu*(x-x_);
+    y_a = (y+y_)*0.5 + mu*(x_-x);
     r_a = sqrt((x-x_a)^2+(y-y_a)^2);
     d_th = atan2(y_ - y_a, x_ - x_a) - atan2(y-y_a, x-x_a);
     d_t = t_ - t;
