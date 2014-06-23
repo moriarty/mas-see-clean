@@ -17,8 +17,17 @@ function [p_v, p_w, start_poses, end_poses, vs] = load_my_crap(file_str)
     for i=1:length(start_poses)
         [vs(i,1), vs(i,2)] = compute_velocity(start_poses(i,:), end_poses(i,:));
     end
+    
+    outlier_indices = get_my_outliers(vs);
+    start_poses(outlier_indices,:)=[];
+    end_poses(outlier_indices,:)=[];
+    
     p_v = mle(vs(:,1),'dist','normal');
     p_w = mle(vs(:,2),'dist','normal');
+    
+    vs(outlier_indices,:)=[];
+    
+    
 end
 % data = zeros(10, 3);
 % for i=1:10
